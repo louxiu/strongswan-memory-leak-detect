@@ -12,6 +12,7 @@
  * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
  * for more details.
  */
+#define HAVE_BACKTRACE
 
 #define _GNU_SOURCE
 
@@ -55,6 +56,7 @@ struct private_backtrace_t {
  */
 static void log_(private_backtrace_t *this, FILE *file, bool detailed)
 {
+	
 #ifdef HAVE_BACKTRACE
 	size_t i;
 	char **strings;
@@ -64,7 +66,7 @@ static void log_(private_backtrace_t *this, FILE *file, bool detailed)
 	fprintf(file, " dumping %d stack frame addresses:\n", this->frame_count);
 	for (i = 0; i < this->frame_count; i++)
 	{
-#ifdef HAVE_DLADDR
+    #ifdef HAVE_DLADDR
 		Dl_info info;
 
 		if (dladdr(this->frames[i], &info))
@@ -121,7 +123,7 @@ static void log_(private_backtrace_t *this, FILE *file, bool detailed)
 		{
 			fprintf(file, "    %s\n", strings[i]);
 		}
-#endif /* HAVE_DLADDR */
+    #endif /* HAVE_DLADDR */
 	}
 	free (strings);
 #else /* !HAVE_BACKTRACE */

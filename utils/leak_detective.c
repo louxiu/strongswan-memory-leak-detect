@@ -339,7 +339,7 @@ void *malloc_hook(size_t bytes, const void *caller)
 
 	hdr->magic = MEMORY_HEADER_MAGIC;
 	hdr->bytes = bytes;
-	hdr->backtrace = backtrace_create(3);
+	hdr->backtrace = backtrace_create(2);
 	tail->magic = MEMORY_TAIL_MAGIC;
 	install_hooks();
 
