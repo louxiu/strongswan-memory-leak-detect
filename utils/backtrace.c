@@ -13,6 +13,7 @@
  * for more details.
  */
 #define HAVE_BACKTRACE
+#define HAVE_DLADDR
 
 #define _GNU_SOURCE
 
