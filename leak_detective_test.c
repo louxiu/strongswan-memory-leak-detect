@@ -15,9 +15,13 @@ int main(int argc, char *argv[])
 {   
     leak_detective_t *leak_detective = leak_detective_create();
 
+    /* inject memory leaks */
     inject_leak();
+
+    /* print report to stderr */
+    leak_detective->report(leak_detective, 0);
     
-    leak_detective->report(leak_detective, 0);        
     leak_detective->destroy(leak_detective);
+    
     return 0;
 }
